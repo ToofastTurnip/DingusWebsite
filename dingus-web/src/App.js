@@ -1,28 +1,31 @@
-import logo from './images/fortnite-jim.jpg';
+import jim from './images/fortnite-jim.jpg';
 import './App.css';
-import { Component } from 'react/cjs/react.production.min';
+import { Component } from 'react';
+import Draggable from 'react-draggable';
 
 class App extends Component {
+
+  myFunction() {
+    alert("You shouldn't have clicked that");
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <Draggable>
+            <img src={jim} className="App-logo" alt="logo" />
+          </Draggable>
         </header>
+        <body className="App-body">
+          <h1>
+            Hey dude ckick this <button onClick={() => this.myFunction()}>this</button>
+          </h1>
+        </body>
       </div>
     );
   }
+
 }
 
 export default App;
