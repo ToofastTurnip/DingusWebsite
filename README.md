@@ -6,3 +6,5 @@ Furture plans include jenkins pipeline for continuous deployment, and an actual 
 ### Current state
 - Front end: *Jimmy Neutron*
 - Back end: planning on some kind of basic user service that won't work if your name is Dennis
+### How to build it
+just use `npm start` dude
