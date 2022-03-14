@@ -8,7 +8,6 @@ Make a webapp that is terrible
 - User form for the front end
 - Make evey element `<draggable>` to make the website harder to use haha
 - Spongebob villain tier list
-<br>
 ### Current state
 - Front end: *Jimmy Neutron*
 - Back end: basic user service, but Dennis is Stinky
