@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+.submit-btn {
+  background-color: rgb(19, 209, 235);
+  color: #fff;
+  padding: 6px 30px;
+  vertical-align: middle;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: rgb(10, 130, 146);
+}
+
+.gif-item {
+  flex-basis: 19%;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .gif-item {
+    flex-basis: 31%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gif-item {
+    flex-basis: 48%;
+  }
+}

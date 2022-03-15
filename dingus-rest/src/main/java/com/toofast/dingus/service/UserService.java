@@ -11,6 +11,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+//    @Autowired
+//    public UserService(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
+
     public User createUser(User user) {
         User checkedUser = dennisChecker(user);
         return userRepository.save(checkedUser);
@@ -21,8 +26,13 @@ public class UserService {
     }
 
     private User dennisChecker(User user) {
-        if (user.getFirst_name().equalsIgnoreCase("dennis")) {
-            user.setFirst_name("Stinky");
+        try {
+            if (user.getFirst_name().equalsIgnoreCase("dennis")) {
+                user.setFirst_name("Dr. Stinky");
+            }
+        } catch(NullPointerException e) {
+            System.out.println("Dangit, nullpointer exception my dude");
+            return new User();
         }
         return user;
     }
