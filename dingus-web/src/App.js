@@ -1,18 +1,14 @@
 import jim from './images/fortnite-jim.jpg';
-import { GiphyFetch } from '@giphy/js-fetch-api'
-import TextList from './components/TextList'
 import './App.css';
 import { Component } from 'react';
 import Draggable from 'react-draggable';
-
-const giphy = new GiphyFetch('SWM5VsxShEASc5AF4spwZBmU0Iw85bPM')
-const [results, setResults] = [];
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      headerVisible: true,
       results: [],
       setResults: [],
     }
@@ -24,20 +20,32 @@ class App extends Component {
     alert("You shouldn't have clicked that");
   }
 
-  handleSubmit() {
-    const apiCall = async () => {
-      const res = await giphy.animate('dingus')
-      setResults(res.data)
+  handleSubmit = async () => {
+    const apiKey = 'SWM5VsxShEASc5AF4spwZBmU0Iw85bPM';
+    const apiUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=dingus&limit=1&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const gifData = await response.json();
+      const imageUrl = gifData.data[0].images.original.url;
+      document.body.style.backgroundImage = `url(${imageUrl})`;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center';
+      this.setState({ headerVisible: false });
+    } catch (error) {
+      console.error("Failed to fetch GIF:", error);
+      alert("Ran out of api key, fuckhead!");
     }
-    apiCall()
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className={`App-header ${!this.state.headerVisible ? 'hidden' : ''}`}>
           <Draggable>
-            <img src={jim} className="App-logo" alt="logo" />
+            <div>
+              <img src={jim} className="App-logo" alt="logo" />
+            </div>
           </Draggable>
         </header>
         <body className="App-body">
@@ -47,8 +55,7 @@ class App extends Component {
         </body>
         <footer>
           <h1>Dingus gif</h1>
-          <button className='submit-btn' onClick={this.handleSubmit}>Submit</button>
-          {results && <TextList gifs={results}  />}
+          <button className='submit-btn' onClick={this.handleSubmit}>Gimmie</button>
         </footer>
       </div>
     );
